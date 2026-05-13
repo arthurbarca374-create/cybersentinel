@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — CyberSentinel</title>
+  <link rel="stylesheet" href="/static/css/main.css"/>
+</head>
+<body class="dashboard-page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">🛡️ <span>CyberSentinel</span></div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-view="overview">📊 Overview</a>
+      <a href="#" class="nav-item" data-view="scan">🔍 New Scan</a>
+      <a href="#" class="nav-item" data-view="reports">📄 Reports</a>
+      <a href="#" class="nav-item" data-view="community">👥 Community</a>
+    </nav>
+    <div class="sidebar-user">
+      <img id="user-avatar" src="" alt="avatar" class="avatar"/>
+      <div>
+        <div id="user-username" class="username">—</div>
+        <button id="logout-btn" class="logout-btn">Sign out</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="dashboard-main">
+
+    <!-- OVERVIEW VIEW -->
+    <div id="view-overview" class="view active">
+      <div class="dash-header">
+        <h1>Welcome back, <span id="greet-name">—</span></h1>
+        <p>Here's your trial status and recent activity.</p>
+      </div>
+
+      <!-- Trial Banner -->
+      <div id="trial-banner" class="trial-banner">
+        <div class="trial-info">
+          <strong>Free Trial Active</strong>
+          <span id="trial-expires">Expires —</span>
+        </div>
+        <div class="trial-progress">
+          <div class="progress-label">
+            <span id="scans-used">0</span> / <span id="scans-max">10</span> scans used
+          </div>
+          <div class="progress-bar">
+            <div id="scans-bar" class="progress-fill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-val" id="stat-scans-left">—</div><div class="stat-name">Scans Remaining</div></div>
+        <div class="stat-card"><div class="stat-val" id="stat-days-left">—</div><div class="stat-name">Days Left</div></div>
+        <div class="stat-card"><div class="stat-val">MIT</div><div class="stat-name">License</div></div>
+        <div class="stat-card"><div class="stat-val">Free</div><div class="stat-name">Community Plan</div></div>
+      </div>
+
+      <div class="quick-actions">
+        <h2>Quick Start</h2>
+        <a href="#" data-view="scan" class="action-card nav-item">
+          <span>🔍</span>
+          <div><strong>Run a Scan</strong><p>Check a target for vulnerabilities</p></div>
+        </a>
+        <a href="#" data-view="community" class="action-card nav-item">
+          <span>👥</span>
+          <div><strong>Join the Community</strong><p>Share intel and get help</p></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- SCAN VIEW -->
+    <div id="view-scan" class="view hidden">
+      <div class="dash-header">
+        <h1>🔍 New Scan</h1>
+        <p>Enter a target to scan. Each scan uses 1 of your trial credits.</p>
+      </div>
+      <div class="scan-form-wrap">
+        <form id="scan-form" class="scan-form">
+          <div id="scan-error" class="alert alert-error hidden"></div>
+          <div id="scan-success" class="alert alert-success hidden"></div>
+          <div class="form-group">
+            <label>Target (domain or IP)</label>
+            <input type="text" id="scan-target" placeholder="example.com or 192.168.1.1" required/>
+          </div>
+          <div class="form-group">
+            <label>Scan Type</label>
+            <select id="scan-type">
+              <option value="basic">Basic — DNS, SSL, Headers</option>
+              <option value="ports">Port Scan</option>
+              <option value="full">Full — All checks</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" id="scan-btn">
+            Run Scan (<span id="scan-credit-cost">1</span> credit)
+          </button>
+        </form>
+        <div id="scan-results" class="scan-results hidden">
+          <h3>Scan Results</h3>
+          <pre id="scan-output"></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS VIEW -->
+    <div id="view-reports" class="view hidden">
+      <div class="dash-header">
+        <h1>📄 Reports</h1>
+        <p>Your scan history and reports.</p>
+      </div>
+      <div class="empty-state">
+        <span>📭</span>
+        <p>No reports yet. Run your first scan to see results here.</p>
+        <a href="#" data-view="scan" class="btn btn-primary nav-item">Run First Scan</a>
+      </div>
+    </div>
+
+    <!-- COMMUNITY VIEW -->
+    <div id="view-community" class="view hidden">
+      <div class="dash-header">
+        <h1>👥 Community</h1>
+        <p>Connect with other security practitioners.</p>
+      </div>
+      <div class="community-links-dash">
+        <a href="https://github.com/arthurbarca374-create/cybersentinel/discussions" target="_blank" class="action-card">
+          <span>💬</span>
+          <div><strong>GitHub Discussions</strong><p>Ask questions, share findings, get help</p></div>
+        </a>
+        <a href="https://github.com/arthurbarca374-create/cybersentinel" target="_blank" class="action-card">
+          <span>⭐</span>
+          <div><strong>Star the Repo</strong><p>Help others discover CyberSentinel</p></div>
+        </a>
+        <a href="https://github.com/arthurbarca374-create/cybersentinel/issues/new" target="_blank" class="action-card">
+          <span>🐛</span>
+          <div><strong>Report a Bug</strong><p>Help us improve the platform</p></div>
+        </a>
+      </div>
+      <div class="member-section">
+        <h2>Recent Members</h2>
+        <div id="dash-members" class="member-grid"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

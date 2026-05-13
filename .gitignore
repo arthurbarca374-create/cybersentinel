@@ -1,0 +1,33 @@
+# Secrets and tokens
+.secrets/
+*.token
+*.gpg
+
+# Dependency directories
+node_modules/
+venv/
+__pycache__/
+
+# Environment files
+.env
+.venv
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+
+# Build outputs
+dist/
+build/
+*.pyc
+*.pyo
+*.pyd

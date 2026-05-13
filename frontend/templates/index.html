@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberSentinel — Community</title>
+  <link rel="stylesheet" href="/static/css/main.css" />
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="logo-icon">🛡️</span>
+      <span class="logo-text">CyberSentinel</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#community">Community</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/login" class="btn btn-outline">Login</a>
+      <a href="/register" class="btn btn-primary">Try Free</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">Open Source · Free Community Plan</div>
+      <h1>Protect Your Digital World<br/><span class="accent">Together</span></h1>
+      <p class="hero-sub">
+        CyberSentinel is a community-driven security platform. Get 14 days free,
+        10 scans included — no credit card, no catch.
+      </p>
+      <div class="hero-cta">
+        <a href="/register" class="btn btn-primary btn-lg">Start Free Trial</a>
+        <a href="/api/auth/github" class="btn btn-github btn-lg">
+          <svg height="20" viewBox="0 0 16 16" width="20" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+            0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+            -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+            .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27
+            .68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12
+            .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48
+            0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          Login with GitHub
+        </a>
+      </div>
+      <p class="hero-note">14-day trial · 10 free scans · No card required</p>
+    </div>
+    <div class="hero-visual">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title">cybersentinel scan</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="prompt">$</span> cybersentinel scan --target example.com</p>
+          <p class="out">🔍 Initializing scan engine...</p>
+          <p class="out">✅ DNS check: <span class="ok">PASS</span></p>
+          <p class="out">✅ SSL/TLS:   <span class="ok">PASS</span></p>
+          <p class="out warn">⚠️  Open ports: <span class="warn-text">3306 exposed</span></p>
+          <p class="out">✅ Headers:   <span class="ok">PASS</span></p>
+          <p class="out err">❌ CVE-2024-1234: <span class="err-text">CRITICAL</span></p>
+          <p class="out">📊 Risk Score: <span class="score">72/100</span></p>
+          <p class="prompt-line"><span class="prompt">$</span> <span class="cursor">█</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <h2>What CyberSentinel Does</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Vulnerability Scanning</h3>
+        <p>Automated scans against known CVEs and misconfigurations across your targets.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Network Recon</h3>
+        <p>Port scanning, DNS enumeration, SSL analysis and header inspection.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Risk Scoring</h3>
+        <p>CVSS-based risk scoring with actionable remediation guidance and reports.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-Assisted Analysis</h3>
+        <p>Powered by OpenClaw agent routing for deeper threat intelligence.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Community Knowledge</h3>
+        <p>Shared threat intel and community-reported vulnerabilities.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔓</div>
+        <h3>Open Source</h3>
+        <p>MIT licensed. Audit the code, contribute, or self-host — your choice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community" class="community">
+    <h2>Join the Community</h2>
+    <p class="section-sub">Built in the open, for security practitioners everywhere.</p>
+    <div class="community-stats" id="community-stats">
+      <div class="stat"><span class="stat-num" id="stat-members">—</span><span class="stat-label">Members</span></div>
+      <div class="stat"><span class="stat-num">14</span><span class="stat-label">Free Trial Days</span></div>
+      <div class="stat"><span class="stat-num">10</span><span class="stat-label">Free Scans</span></div>
+      <div class="stat"><span class="stat-num">MIT</span><span class="stat-label">License</span></div>
+    </div>
+    <div class="member-avatars" id="member-avatars"></div>
+    <div class="community-links">
+      <a href="https://github.com/arthurbarca374-create/cybersentinel/discussions" target="_blank" class="btn btn-outline">
+        💬 GitHub Discussions
+      </a>
+      <a href="https://github.com/arthurbarca374-create/cybersentinel" target="_blank" class="btn btn-outline">
+        ⭐ Star on GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <h2>Simple, Free to Start</h2>
+    <div class="plans">
+      <div class="plan plan-free">
+        <div class="plan-name">Community Free</div>
+        <div class="plan-price">$0 <span>/forever</span></div>
+        <ul>
+          <li>✅ 14-day full trial</li>
+          <li>✅ 10 scans included</li>
+          <li>✅ GitHub login</li>
+          <li>✅ Community forum access</li>
+          <li>✅ Basic reports</li>
+        </ul>
+        <a href="/register" class="btn btn-primary">Get Started Free</a>
+      </div>
+      <div class="plan plan-pro">
+        <div class="plan-badge">Coming Soon</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">TBD</div>
+        <ul>
+          <li>✅ Unlimited scans</li>
+          <li>✅ AI-powered reports</li>
+          <li>✅ Priority support</li>
+          <li>✅ Team access</li>
+          <li>✅ API access</li>
+        </ul>
+        <button class="btn btn-outline" disabled>Join Waitlist</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">🛡️ CyberSentinel</div>
+    <p>Open source · MIT License · Built with ❤️ by the community</p>
+    <div class="footer-links">
+      <a href="https://github.com/arthurbarca374-create/cybersentinel" target="_blank">GitHub</a>
+      <a href="/api/docs">API Docs</a>
+      <a href="https://github.com/arthurbarca374-create/cybersentinel/discussions" target="_blank">Discussions</a>
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
