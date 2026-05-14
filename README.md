@@ -4,6 +4,7 @@
 
 [![CI](https://github.com/arthurbarca374-create/cybersentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/arthurbarca374-create/cybersentinel/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/arthurbarca374-create/cybersentinel)
 
 CyberSentinel is a self-hostable, open-source security scanning platform with a community portal. Users can sign up (or log in with GitHub), get a **14-day free trial with 10 scans**, and connect with a growing security community.
 
@@ -81,7 +82,12 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-### 4. Or run individual components
+### 4. Deploy on Vercel (serverless)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/arthurbarca374-create/cybersentinel)
+
+Requires PostgreSQL. See [Deployment Guide](docs/DEPLOYMENT.md#vercel-serverless) for details.
+
+### 5. Or run individual components
 ```bash
 python scripts/run.sh api     # API server only
 python scripts/run.sh worker  # Background worker only
@@ -107,7 +113,8 @@ cybersentinel/
 ├── scripts/              # run.sh, backup.sh, setup.sh, cron jobs
 ├── .github/workflows/    # CI pipeline with lint/test/Docker
 ├── main.py               # FastAPI app entry point
-├── cybersentinel_app.py  # WSGI wrapper (gunicorn)
+├── vercel_app.py         # Vercel serverless ASGI entry point
+├── vercel.json           # Vercel deployment configuration
 ├── worker.py             # Background worker process
 ├── mcp_server.py         # MCP AI tool protocol server
 ├── requirements.txt

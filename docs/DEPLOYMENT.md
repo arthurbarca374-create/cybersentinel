@@ -1,5 +1,44 @@
 # Deployment Guide
 
+## Vercel (Serverless)
+
+CyberSentinel can be deployed on Vercel's serverless platform. Note that WebSocket and background scheduler are skipped in this mode.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/arthurbarca374-create/cybersentinel)
+
+### Prerequisites
+- A PostgreSQL database (Vercel Postgres, Neon, Supabase, etc.)
+- Vercel CLI: `npm i -g vercel`
+
+### Setup
+
+1. Set `DATABASE_URL` in your Vercel project environment variables to a PostgreSQL connection string
+2. The app auto-detects Vercel via the `VERCEL` env var and skips background scheduler + WebSocket
+
+```bash
+vercel login
+vercel --prod
+```
+
+### How it works
+
+| Component | Vercel Behavior |
+|---|---|
+| **API** | Runs as serverless ASGI function via `vercel_app.py` |
+| **Frontend** | Static files served from `frontend/static/` and `frontend/templates/` via Vercel CDN |
+| **Database** | Use PostgreSQL via `DATABASE_URL`. SQLite will NOT persist on serverless |
+| **WebSocket** | Not available on Vercel Functions; the route is registered but clients will receive an error |
+| **Scheduler** | Skipped on Vercel (no long-running background tasks in serverless) |
+| **Rate limiting** | Per-function memory; resets on cold starts |
+
+### Limitations
+
+- Scan runs are synchronous (no background worker)
+- WebSocket progress updates are unavailable
+- Scheduler/cron-based scans require an external cron service (e.g., cron-job.org)
+
+---
+
 ## Quick Deploy (Single Server)
 
 ### Prerequisites

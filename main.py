@@ -7,6 +7,7 @@ from fastapi.responses import FileResponse
 from contextlib import asynccontextmanager
 import asyncio
 import logging
+import os
 
 try:
     from slowapi import _rate_limit_exceeded_handler
@@ -22,6 +23,8 @@ from backend.db.database import Base, engine
 from backend.api.routes import auth, users, health
 from backend.api.routes import scans, teams, threat, ai, blockchain, ws, api_keys
 from backend.services.scheduler import run_scheduler_loop
+
+ON_VERCEL = os.getenv("VERCEL", "").lower() == "1"
 
 settings = get_settings()
 logger = logging.getLogger(__name__)
@@ -62,11 +65,16 @@ def _log_capabilities():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     _log_capabilities()
-    scheduler_task = asyncio.create_task(run_scheduler_loop(interval=15))
-    logger.info("Background scheduler started (interval=15s)")
+    scheduler_task = None
+    if not ON_VERCEL:
+        scheduler_task = asyncio.create_task(run_scheduler_loop(interval=15))
+        logger.info("Background scheduler started (interval=15s)")
+    else:
+        logger.info("Skipping background scheduler (Vercel serverless)")
     yield
-    scheduler_task.cancel()
-    logger.info("Background scheduler stopped")
+    if scheduler_task:
+        scheduler_task.cancel()
+        logger.info("Background scheduler stopped")
 
 
 Base.metadata.create_all(bind=engine)
