@@ -9,6 +9,20 @@ CyberSentinel is a self-hostable, open-source security scanning platform with a 
 
 ---
 
+## Documentation
+
+| Guide | Description |
+|-------|-------------|
+| [Usage Guide](docs/USAGE.md) | Authentication, scans, API keys, WebSocket, teams |
+| [API Reference](docs/API_REFERENCE.md) | Complete API endpoint reference with examples |
+| [Integrations](docs/INTEGRATIONS.md) | AI analysis, threat intel, blockchain, notifications |
+| [Architecture](docs/ARCHITECTURE.md) | System design, data flow, component relationships |
+| [Deployment](docs/DEPLOYMENT.md) | Docker, production, reverse proxy, Terraform |
+| [Development](docs/DEVELOPMENT.md) | Setup, testing, code quality, adding features |
+| [Community Guide](docs/COMMUNITY.md) | Contributing, bug reports, feature requests, code of conduct |
+
+---
+
 ## Features
 
 | Feature | Status |
