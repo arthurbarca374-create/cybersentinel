@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_DB: cybersentinel
       POSTGRES_USER: cybersentinel
-      POSTGRES_PASSWORD: XnN9A3W/bJt0rGs0WrYPjATW6Nx6I/HP
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U cybersentinel"]
@@ -21,16 +21,12 @@ services:
         condition: service_healthy
     env_file: .env
     environment:
-      DATABASE_URL: postgresql://cybersentinel:XnN9A3W/bJt0rGs0WrYPjATW6Nx6I/HP@db:5432/cybersentinel
+      DATABASE_URL: postgresql://cybersentinel:${DB_PASSWORD}@db:5432/cybersentinel
     volumes:
       - scan_data:/app/scans
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
-      interval: 30s
-      timeout: 10s
-      start_period: 10s
-      retries: 3
 
   worker:
     build: .
@@ -40,7 +36,7 @@ services:
         condition: service_healthy
     env_file: .env
     environment:
-      DATABASE_URL: postgresql://cybersentinel:XnN9A3W/bJt0rGs0WrYPjATW6Nx6I/HP@db:5432/cybersentinel
+      DATABASE_URL: postgresql://cybersentinel:${DB_PASSWORD}@db:5432/cybersentinel
     volumes:
       - scan_data:/app/scans
     restart: unless-stopped

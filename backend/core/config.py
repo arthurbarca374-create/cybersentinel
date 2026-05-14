@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     FREE_TRIAL_SCANS: int = 10
 
     FRONTEND_URL: str = "http://localhost:8000"
-    ALLOWED_HOSTS: list[str] = ["*"]
+    ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1"]
 
     ANTHROPIC_API_KEY: str = ""
     OPENAI_API_KEY: str = ""
@@ -38,7 +38,7 @@ class Settings(BaseSettings):
     TELEGRAM_BOT_TOKEN: str = ""
     TELEGRAM_CHAT_ID: str = ""
 
-    model_config = SettingsConfigDict(env_file=".env", case_sensitive=True)
+    model_config = SettingsConfigDict(env_file=".env", case_sensitive=True, extra="ignore")
 
 
 @lru_cache()

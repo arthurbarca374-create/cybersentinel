@@ -257,11 +257,12 @@ async function loadCommunityMembers() {
     }
     grid.innerHTML = data.recent_members.map(m => {
       const name = escapeHtml(m.username || 'Anonymous');
+      const initial = escapeHtml((m.username || '?')[0]);
       return `<div class="member-card">
         <img src="${escapeHtml(m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.username)}&background=00ff88&color=0a0a0a&bold=true`)}"
              alt="${name}"
              title="${name}"
-             onerror="this.outerHTML='<div class=\\'avatar-placeholder\\'>${name[0]}</div>'">
+             onerror="this.outerHTML='<div class=\\'avatar-placeholder\\'>${initial}</div>'">
         <div class="member-name">${name}</div>
         <div class="member-joined">${m.joined ? new Date(m.joined).toLocaleDateString() : ''}</div>
       </div>`;

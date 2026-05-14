@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 try:
     from slowapi import Limiter
     from slowapi.util import get_remote_address
@@ -9,3 +13,4 @@ except ImportError:
     limiter = MagicMock()
     limiter.limit = lambda x: (lambda f: f)
     HAS_LIMITER = False
+    logger.warning("slowapi not installed — rate limiting is DISABLED. Install with: pip install slowapi")
