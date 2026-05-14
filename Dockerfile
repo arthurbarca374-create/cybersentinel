@@ -6,12 +6,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     nmap \
     wget \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q https://github.com/projectdiscovery/nuclei/releases/download/v3.3.9/nuclei_3.3.9_linux_amd64.deb \
-    && dpkg -i nuclei_3.3.9_linux_amd64.deb \
-    && rm nuclei_3.3.9_linux_amd64.deb \
-    && nuclei -update-templates 2>/dev/null || true
+RUN wget -q https://github.com/projectdiscovery/nuclei/releases/download/v3.3.9/nuclei_3.3.9_linux_amd64.deb -O /tmp/nuclei.deb \
+    && dpkg -i /tmp/nuclei.deb \
+    && rm /tmp/nuclei.deb \
+    && nuclei -update-templates 2>/dev/null || echo "Nuclei templates update skipped (offline build)"
 
 COPY requirements.txt .
 COPY requirements-mcp.txt .
