@@ -149,9 +149,16 @@ async function loadOverview() {
 async function loadScanView() {
   const targetsEl = document.getElementById('targets-list');
   const scanLogEl = document.getElementById('scan-log');
+  const typeSelect = document.getElementById('scan-type');
   if (!targetsEl && !scanLogEl) return;
 
   try {
+    if (typeSelect) {
+      const types = await apiFetch('/api/scans/types') || { scan_types: [] };
+      typeSelect.innerHTML = types.scan_types.map(t =>
+        `<option value="${t.id}">${escapeHtml(t.name)}</option>`
+      ).join('');
+    }
     const targets = await apiFetch('/api/scans/targets') || [];
     if (targetsEl) {
       if (targets.length === 0) {
@@ -226,9 +233,10 @@ document.addEventListener('click', async (e) => {
         updateScanUI(await apiFetch('/api/users/trial/status'));
         return;
       }
+      const scanType = document.getElementById('scan-type')?.value || 'quick';
       const scan = await apiFetch('/api/scans/run', {
         method: 'POST',
-        body: JSON.stringify({ target_id: targets[0].id, scan_type: 'quick' }),
+        body: JSON.stringify({ target_id: targets[0].id, scan_type: scanType }),
       });
       if (scan) {
         document.getElementById('scan-result').innerHTML =

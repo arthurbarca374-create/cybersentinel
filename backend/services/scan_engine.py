@@ -20,6 +20,10 @@ SCAN_TYPES = {
     "service": "Service version detection",
     "vuln": "Vulnerability assessment",
     "web": "Web application scan",
+    "nuclei-critical": "Nuclei CVE scan — critical severity only (fastest)",
+    "nuclei-high": "Nuclei CVE scan — high+ severity",
+    "nuclei-medium": "Nuclei CVE scan — medium+ severity (recommended)",
+    "nuclei-all": "Nuclei CVE scan — all severities (most thorough)",
 }
 
 
@@ -120,6 +124,20 @@ async def run_scan(scan_id: int):
 
         async def _execute_scan():
             loop = asyncio.get_event_loop()
+
+            if scan_type in ("nuclei-critical", "nuclei-high", "nuclei-medium", "nuclei-all"):
+                from backend.services.nuclei_engine import run_nuclei_scan
+                port_list = None
+                if config.get("ports"):
+                    port_list = _parse_ports(config["ports"])
+                await publish_scan_progress(scan.id, 10, "running", "Starting Nuclei CVE scan")
+                status, findings = await run_nuclei_scan(
+                    host, scan.id, scan_type, port_list, config
+                )
+                if status == "completed":
+                    return findings
+                scan.error = status
+                return []
 
             if scan_type == "quick":
                 ports = config.get("ports", "21,22,23,25,53,80,110,143,443,445,993,995,1433,1521,2049,3306,3389,5432,5900,6379,8080,8443,9090,27017")
