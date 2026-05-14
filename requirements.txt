@@ -21,3 +21,6 @@ mcp>=1.0.0
 
 # Rate limiting
 slowapi>=0.1.9
+
+# PostgreSQL support (for Vercel/production)
+psycopg2-binary>=2.9.9
