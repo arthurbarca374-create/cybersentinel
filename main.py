@@ -122,4 +122,8 @@ app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 
 @app.get("/{full_path:path}", include_in_schema=False)
 def serve_frontend(full_path: str):
+    if full_path == "login":
+        return FileResponse("frontend/templates/login.html")
+    if full_path == "register":
+        return FileResponse("frontend/templates/register.html")
     return FileResponse("frontend/templates/index.html")
