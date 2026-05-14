@@ -21,6 +21,7 @@ CyberSentinel is a self-hostable, open-source security scanning platform with a 
 | [Deployment](docs/DEPLOYMENT.md) | Docker, production, reverse proxy, Terraform |
 | [Development](docs/DEVELOPMENT.md) | Setup, testing, code quality, adding features |
 | [Community Guide](docs/COMMUNITY.md) | Contributing, bug reports, feature requests, code of conduct |
+| [Strategy & Monetization](docs/STRATEGY.md) | Business plan, pricing tiers, go-to-market, open-source profit model |
 
 ---
 
